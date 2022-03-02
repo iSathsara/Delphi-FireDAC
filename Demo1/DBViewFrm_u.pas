@@ -138,8 +138,8 @@ begin
   FDQueryCustomers.Close;
   FDQueryCustomers.SQL.Clear;
   FDQueryCustomers.SQL.Add('INSERT INTO CUSTOMER (CUSTOMER,PHONE_NO,ADDRESS_LINE1)');
-  FDQueryCustomers.SQL.Add('VALUES ('+CustName+','+CustPhone+','+CustAddress+')');
-  FDQueryCustomers.ExecSQL;
+  FDQueryCustomers.SQL.Add('VALUES ('''+CustName+''','''+CustPhone+''','''+CustAddress+''')');
+  FDQueryCustomers.ExecSQL;      // execSQL is used instead of Open.
 
   EdtName.Text := '';
   EdtPhone.Text := '';
@@ -149,7 +149,6 @@ begin
   FDQueryCustomers.SQL.Clear;
   FDQueryCustomers.SQL.Add(_ALL_DETAILS_);
   FDQueryCustomers.Open;
-
 end;
 {______________________________________________________________________________}
 

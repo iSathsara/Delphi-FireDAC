@@ -34,6 +34,7 @@ object Form1: TForm1
     Top = 172
     Width = 33
     Height = 15
+    Anchors = [akTop, akRight]
     Caption = 'Name'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -47,6 +48,7 @@ object Form1: TForm1
     Top = 238
     Width = 35
     Height = 15
+    Anchors = [akTop, akRight]
     Caption = 'Phone'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -60,6 +62,7 @@ object Form1: TForm1
     Top = 307
     Width = 44
     Height = 15
+    Anchors = [akTop, akRight]
     Caption = 'Address'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -186,6 +189,7 @@ object Form1: TForm1
     Top = 368
     Width = 96
     Height = 25
+    Anchors = [akTop, akRight]
     Caption = 'Insert'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -201,6 +205,7 @@ object Form1: TForm1
     Top = 368
     Width = 75
     Height = 25
+    Anchors = [akTop, akRight]
     Caption = 'Cancel'
     TabOrder = 11
   end
@@ -209,6 +214,7 @@ object Form1: TForm1
     Top = 193
     Width = 177
     Height = 23
+    Anchors = [akTop, akRight]
     TabOrder = 12
   end
   object EdtPhone: TEdit
@@ -216,6 +222,7 @@ object Form1: TForm1
     Top = 259
     Width = 177
     Height = 23
+    Anchors = [akTop, akRight]
     TabOrder = 13
   end
   object EdtAddress: TEdit
@@ -223,6 +230,7 @@ object Form1: TForm1
     Top = 328
     Width = 177
     Height = 23
+    Anchors = [akTop, akRight]
     TabOrder = 14
   end
   object DataSourceCustomer: TDataSource
