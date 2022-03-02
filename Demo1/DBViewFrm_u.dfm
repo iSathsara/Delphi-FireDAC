@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'DB View Form'
-  ClientHeight = 351
+  ClientHeight = 457
   ClientWidth = 983
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -10,10 +10,11 @@ object Form1: TForm1
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poDesktopCenter
   PixelsPerInch = 96
   DesignSize = (
     983
-    351)
+    457)
   TextHeight = 15
   object DBNavigator1: TDBNavigator
     Left = 24
@@ -27,7 +28,7 @@ object Form1: TForm1
     Left = 24
     Top = 39
     Width = 752
-    Height = 290
+    Height = 396
     Anchors = [akLeft, akTop, akRight, akBottom]
     DataSource = DataSourceCustomer
     TabOrder = 1
@@ -37,52 +38,65 @@ object Form1: TForm1
     TitleFont.Name = 'Segoe UI'
     TitleFont.Style = []
   end
-  object Button1: TButton
-    Left = 282
+  object BtnCustomers: TButton
+    Left = 410
     Top = 8
     Width = 75
     Height = 25
-    Anchors = [akRight, akBottom]
+    Anchors = [akTop, akRight]
     Caption = 'Customers'
     TabOrder = 2
-    OnClick = Button1Click
+    OnClick = BtnCustomersClick
   end
-  object Button2: TButton
-    Left = 378
+  object BtnPhoneNo: TButton
+    Left = 506
     Top = 8
     Width = 75
     Height = 25
-    Anchors = [akRight, akBottom]
+    Anchors = [akTop, akRight]
     Caption = 'Phone No'
     TabOrder = 3
+    OnClick = BtnPhoneNoClick
   end
-  object Button3: TButton
-    Left = 474
+  object BtnAddress: TButton
+    Left = 602
     Top = 8
     Width = 75
     Height = 25
-    Anchors = [akRight, akBottom]
+    Anchors = [akTop, akRight]
     Caption = 'Address'
     TabOrder = 4
+    OnClick = BtnAddressClick
   end
-  object Button4: TButton
-    Left = 565
+  object BtnCountry: TButton
+    Left = 701
     Top = 8
     Width = 75
     Height = 25
-    Anchors = [akRight, akBottom]
+    Anchors = [akTop, akRight]
     Caption = 'Country'
     TabOrder = 5
+    OnClick = BtnCountryClick
   end
   object BitBtn1: TBitBtn
     Left = 900
-    Top = 304
+    Top = 410
     Width = 75
     Height = 25
     Anchors = [akRight, akBottom]
     Kind = bkClose
     NumGlyphs = 2
     TabOrder = 6
+    ExplicitTop = 304
+  end
+  object BtnAll: TButton
+    Left = 280
+    Top = 8
+    Width = 75
+    Height = 25
+    Caption = 'All'
+    TabOrder = 7
+    OnClick = BtnAllClick
   end
   object DataSourceCustomer: TDataSource
     DataSet = FDQueryCustomers

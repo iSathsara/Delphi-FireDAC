@@ -16,12 +16,17 @@ type
     DBGrid1: TDBGrid;
     DataSourceCustomer: TDataSource;
     FDQueryCustomers: TFDQuery;
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
+    BtnCustomers: TButton;
+    BtnPhoneNo: TButton;
+    BtnAddress: TButton;
+    BtnCountry: TButton;
     BitBtn1: TBitBtn;
-    procedure Button1Click(Sender: TObject);
+    BtnAll: TButton;
+    procedure BtnAllClick(Sender: TObject);
+    procedure BtnCustomersClick(Sender: TObject);
+    procedure BtnPhoneNoClick(Sender: TObject);
+    procedure BtnAddressClick(Sender: TObject);
+    procedure BtnCountryClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -35,10 +40,52 @@ implementation
 
 {$R *.dfm}
 
-procedure TForm1.Button1Click(Sender: TObject);
+// SQL Queries
+Const
+  _ALL_DETAILS_ = 'SELECT * FROM CUSTOMER';
+  _CUSTOMERS_   = 'SELECT CUST_NO,CUSTOMER FROM CUSTOMER';
+  _PHONE_       = 'SELECT CUST_NO,CUSTOMER,PHONE_NO FROM CUSTOMER';
+  _COUNTRY_     = 'SELECT CUST_NO,CUSTOMER,COUNTRY FROM CUSTOMER';
+  _ADDRESS_     = 'SELECT CUST_NO,CUSTOMER,ADDRESS_LINE1,ADDRESS_LINE2,CITY, STATE_PROVINCE FROM CUSTOMER';
+
+procedure TForm1.BtnAllClick(Sender: TObject);
 begin
-  FDQueryCustomers.ExecSQL('SELECT CUST_NO FROM CUSTOMER');
-  FDQueryCustomers.Active := True;
+  FDQueryCustomers.Close;                               // close
+  FDQueryCustomers.SQL.Clear;                           // clear previous statements
+  FDQueryCustomers.SQL.Add(_ALL_DETAILS_);              // query
+  FDQueryCustomers.Open;                                // execute query
+end;
+
+procedure TForm1.BtnCountryClick(Sender: TObject);
+begin
+  FDQueryCustomers.Close;
+  FDQueryCustomers.SQL.Clear;
+  FDQueryCustomers.SQL.Add(_COUNTRY_);
+  FDQueryCustomers.Open;
+end;
+
+procedure TForm1.BtnCustomersClick(Sender: TObject);
+begin
+  FDQueryCustomers.Close;
+  FDQueryCustomers.SQL.Clear;
+  FDQueryCustomers.SQL.Add(_CUSTOMERS_);
+  FDQueryCustomers.Open;
+end;
+
+procedure TForm1.BtnPhoneNoClick(Sender: TObject);
+begin
+  FDQueryCustomers.Close;
+  FDQueryCustomers.SQL.Clear;
+  FDQueryCustomers.SQL.Add(_PHONE_);
+  FDQueryCustomers.Open;
+end;
+
+procedure TForm1.BtnAddressClick(Sender: TObject);
+begin
+  FDQueryCustomers.Close;
+  FDQueryCustomers.SQL.Clear;
+  FDQueryCustomers.SQL.Add(_ADDRESS_);
+  FDQueryCustomers.Open;
 end;
 
 end.
