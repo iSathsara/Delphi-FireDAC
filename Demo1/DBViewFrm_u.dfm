@@ -144,6 +144,7 @@ object Form1: TForm1
     Width = 177
     Height = 25
     Anchors = [akRight, akBottom]
+    Caption = '&Exit'
     Kind = bkClose
     NumGlyphs = 2
     TabOrder = 6
@@ -262,6 +263,7 @@ object Form1: TForm1
     Top = 120
     Width = 177
     Height = 25
+    Anchors = [akTop, akRight]
     Caption = '&Edit'
     TabOrder = 17
     OnClick = BtnEditRecordClick

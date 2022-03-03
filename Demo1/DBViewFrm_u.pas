@@ -254,6 +254,8 @@ begin
   if CustNo <> EmptyStr then begin
     // Locate is used to capture Record data from the table, using ID.
     if FDQueryCustomers.Locate('CUST_NO', CustNo, []) then begin
+
+      // Customer details related to CUST_NO
       EdtName.Text := FDQueryCustomers['CUSTOMER'];
       EdtPhone.Text := FDQueryCustomers['PHONE_NO'];
       EdtAddress.Text := FDQueryCustomers['ADDRESS_LINE1'];
@@ -263,6 +265,8 @@ begin
       fName := EdtName.Text;
       fAddress := EdtAddress.Text;
       fPhone := EdtPhone.Text;
+
+      BtnInsert.Enabled := False;
     end;
 
   end else
