@@ -2,24 +2,23 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'DB View Form'
-  ClientHeight = 457
-  ClientWidth = 987
+  ClientHeight = 519
+  ClientWidth = 1002
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  OldCreateOrder = True
   Position = poDesktopCenter
-  DesignSize = (
-    987
-    457)
   PixelsPerInch = 96
+  DesignSize = (
+    1002
+    519)
   TextHeight = 15
   object Label1: TLabel
-    Left = 802
-    Top = 50
+    Left = 817
+    Top = 39
     Width = 73
     Height = 15
     Anchors = [akTop, akRight]
@@ -30,11 +29,10 @@ object Form1: TForm1
     Font.Name = 'Segoe UI'
     Font.Style = [fsBold]
     ParentFont = False
-    ExplicitLeft = 779
   end
   object Label3: TLabel
-    Left = 802
-    Top = 172
+    Left = 817
+    Top = 231
     Width = 33
     Height = 15
     Anchors = [akTop, akRight]
@@ -45,11 +43,10 @@ object Form1: TForm1
     Font.Name = 'Segoe UI'
     Font.Style = [fsBold]
     ParentFont = False
-    ExplicitLeft = 779
   end
   object Label4: TLabel
-    Left = 800
-    Top = 238
+    Left = 815
+    Top = 292
     Width = 35
     Height = 15
     Anchors = [akTop, akRight]
@@ -60,11 +57,10 @@ object Form1: TForm1
     Font.Name = 'Segoe UI'
     Font.Style = [fsBold]
     ParentFont = False
-    ExplicitLeft = 777
   end
   object Label5: TLabel
-    Left = 802
-    Top = 307
+    Left = 817
+    Top = 358
     Width = 44
     Height = 15
     Anchors = [akTop, akRight]
@@ -75,7 +71,6 @@ object Form1: TForm1
     Font.Name = 'Segoe UI'
     Font.Style = [fsBold]
     ParentFont = False
-    ExplicitLeft = 779
   end
   object DBNavigator1: TDBNavigator
     Left = 24
@@ -88,8 +83,8 @@ object Form1: TForm1
   object DBGrid1: TDBGrid
     Left = 24
     Top = 39
-    Width = 756
-    Height = 396
+    Width = 771
+    Height = 472
     Anchors = [akLeft, akTop, akRight, akBottom]
     DataSource = DataSourceCustomer
     TabOrder = 1
@@ -100,7 +95,7 @@ object Form1: TForm1
     TitleFont.Style = []
   end
   object BtnCustomers: TButton
-    Left = 414
+    Left = 429
     Top = 8
     Width = 75
     Height = 25
@@ -108,10 +103,10 @@ object Form1: TForm1
     Caption = 'Customers'
     TabOrder = 2
     OnClick = BtnCustomersClick
-    ExplicitLeft = 391
+    ExplicitLeft = 414
   end
   object BtnPhoneNo: TButton
-    Left = 510
+    Left = 525
     Top = 8
     Width = 75
     Height = 25
@@ -119,10 +114,10 @@ object Form1: TForm1
     Caption = 'Phone No'
     TabOrder = 3
     OnClick = BtnPhoneNoClick
-    ExplicitLeft = 487
+    ExplicitLeft = 510
   end
   object BtnAddress: TButton
-    Left = 606
+    Left = 621
     Top = 8
     Width = 75
     Height = 25
@@ -130,10 +125,10 @@ object Form1: TForm1
     Caption = 'Address'
     TabOrder = 4
     OnClick = BtnAddressClick
-    ExplicitLeft = 583
+    ExplicitLeft = 606
   end
   object BtnCountry: TButton
-    Left = 705
+    Left = 720
     Top = 8
     Width = 75
     Height = 25
@@ -141,18 +136,19 @@ object Form1: TForm1
     Caption = 'Country'
     TabOrder = 5
     OnClick = BtnCountryClick
-    ExplicitLeft = 682
+    ExplicitLeft = 705
   end
   object BitBtn1: TBitBtn
-    Left = 904
-    Top = 424
-    Width = 75
+    Left = 817
+    Top = 486
+    Width = 177
     Height = 25
     Anchors = [akRight, akBottom]
     Kind = bkClose
     NumGlyphs = 2
     TabOrder = 6
-    ExplicitLeft = 881
+    ExplicitLeft = 782
+    ExplicitTop = 455
   end
   object BtnAll: TButton
     Left = 280
@@ -164,8 +160,8 @@ object Form1: TForm1
     OnClick = BtnAllClick
   end
   object EdtSearch: TEdit
-    Left = 802
-    Top = 71
+    Left = 817
+    Top = 60
     Width = 177
     Height = 23
     Cursor = crIBeam
@@ -180,26 +176,24 @@ object Form1: TForm1
     ParentFont = False
     TabOrder = 8
     TextHint = 'search here...'
-    ExplicitLeft = 779
   end
   object BtnSearch: TButton
-    Left = 802
-    Top = 108
+    Left = 817
+    Top = 89
     Width = 177
     Height = 25
     Anchors = [akTop, akRight]
-    Caption = 'Search'
+    Caption = '&Search'
     TabOrder = 9
     OnClick = BtnSearchClick
-    ExplicitLeft = 779
   end
   object BtnInsert: TButton
-    Left = 802
-    Top = 368
-    Width = 96
+    Left = 817
+    Top = 424
+    Width = 91
     Height = 25
     Anchors = [akTop, akRight]
-    Caption = 'Insert'
+    Caption = '&Insert'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -12
@@ -208,49 +202,74 @@ object Form1: TForm1
     ParentFont = False
     TabOrder = 10
     OnClick = BtnInsertClick
-    ExplicitLeft = 779
   end
   object BtnCancel: TButton
-    Left = 904
-    Top = 368
-    Width = 75
+    Left = 817
+    Top = 455
+    Width = 177
     Height = 25
     Anchors = [akTop, akRight]
     Caption = 'Cancel'
     TabOrder = 11
-    ExplicitLeft = 881
+    OnClick = BtnCancelClick
   end
   object EdtName: TEdit
-    Left = 802
-    Top = 193
+    Left = 817
+    Top = 252
     Width = 177
     Height = 23
     Anchors = [akTop, akRight]
     TabOrder = 12
-    ExplicitLeft = 779
   end
   object EdtPhone: TEdit
-    Left = 802
-    Top = 259
+    Left = 817
+    Top = 313
     Width = 177
     Height = 23
     Anchors = [akTop, akRight]
     TabOrder = 13
-    ExplicitLeft = 779
   end
   object EdtAddress: TEdit
-    Left = 802
-    Top = 328
+    Left = 817
+    Top = 379
     Width = 177
     Height = 23
     Anchors = [akTop, akRight]
     TabOrder = 14
-    ExplicitLeft = 779
+  end
+  object BtnDelete: TButton
+    Left = 817
+    Top = 151
+    Width = 177
+    Height = 25
+    Anchors = [akTop, akRight]
+    Caption = '&Delete'
+    TabOrder = 15
+    OnClick = BtnDeleteClick
+  end
+  object BtnEdit: TButton
+    Left = 914
+    Top = 424
+    Width = 80
+    Height = 25
+    Anchors = [akTop, akRight]
+    Caption = '&Update'
+    TabOrder = 16
+    OnClick = BtnEditClick
+  end
+  object BtnEditRecord: TButton
+    Left = 817
+    Top = 120
+    Width = 177
+    Height = 25
+    Caption = '&Edit'
+    TabOrder = 17
+    OnClick = BtnEditRecordClick
   end
   object DataSourceCustomer: TDataSource
     DataSet = FDQueryCustomers
-    Left = 288
-    Top = 152
+    Left = 440
+    Top = 120
   end
   object FDQueryCustomers: TFDQuery
     Connection = DataModule1.EmployeedbConnection
