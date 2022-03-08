@@ -36,6 +36,8 @@ type
     BtnDelete: TButton;
     BtnEdit: TButton;
     BtnEditRecord: TButton;
+    PanelTop: TPanel;
+    PanelBottom: TPanel;
     procedure BtnAllClick(Sender: TObject);
     procedure BtnCustomersClick(Sender: TObject);
     procedure BtnPhoneNoClick(Sender: TObject);
@@ -215,12 +217,13 @@ begin
 
   if not ((fName = EmptyStr) or (fPhone = EmptyStr) or (fAddress = EmptyStr)) then begin
     with FDQueryCustomers do begin
+      Edit;     // put into edit mode
       Close;
       SQL.Clear;
       SQL.Add('UPDATE CUSTOMER CUST');
       SQL.Add('SET CUST.CUSTOMER = '+QuotedStr(fName)+',CUST.PHONE_NO = '+QuotedStr(fPhone)+',CUST.ADDRESS_LINE1 = '+QuotedStr(fAddress));
       SQL.Add('WHERE CUST.CUST_NO = '+fCustomerNo);
-      ExecSQL;
+      Post;    // post, instead of execsql.
 
       if RowsAffected > 0 then
         ShowMessage('Record Updated!')
@@ -238,8 +241,8 @@ begin
   end else
     ShowMessage('Fields Can not be empty!');
 
-  EdtName.Text := '';
-  EdtPhone.Text := '';
+  EdtName.Text    := '';
+  EdtPhone.Text   := '';
   EdtAddress.Text := '';
 
 end;
