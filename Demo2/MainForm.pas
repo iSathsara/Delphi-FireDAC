@@ -40,16 +40,18 @@ type
     BtnActiveTable: TButton;
     BtnClearGrid: TButton;
     BitBtn1: TBitBtn;
-    BtnEnableLogin: TButton;
-    BtnDisableLogin: TButton;
+    FDStoredProc1: TFDStoredProc;
+    BtnActiveStoredProc: TButton;
+    LblActivateItem: TLabel;
     procedure BtnActiveTableClick(Sender: TObject);
     procedure BtnClearGridClick(Sender: TObject);
     procedure BtnActivateQuery1Click(Sender: TObject);
     procedure BtnActivateQuery2Click(Sender: TObject);
-    procedure BtnEnableLoginClick(Sender: TObject);
-    procedure BtnDisableLoginClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure BtnActiveStoredProcClick(Sender: TObject);
   private
     { Private declarations }
+    fLoginEnabled : boolean;
   public
     { Public declarations }
   end;
@@ -61,12 +63,20 @@ implementation
 
 {$R *.dfm}
 
-
+{______________________________________________________________________________}
+procedure TDBViewFrm_u.FormCreate(Sender: TObject);
+begin
+  fLoginEnabled := True;
+  FDConnection1.Params.Password.Empty;
+  FDConnection1.LoginPrompt := True;
+end;
+{______________________________________________________________________________}
 procedure TDBViewFrm_u.BtnActivateQuery1Click(Sender: TObject);
 begin
   DataSource1.DataSet.Close;
   DataSource1.DataSet := FDQuery1;
   FDQuery1.Active := True;
+  LblActivateItem.Caption := 'Query 1';
 end;
 
 procedure TDBViewFrm_u.BtnActivateQuery2Click(Sender: TObject);
@@ -74,6 +84,15 @@ begin
   DataSource1.DataSet.Close;
   DataSource1.DataSet := FDQuery2;
   FDQuery2.Active := True;
+  LblActivateItem.Caption := 'Query 2';
+end;
+
+procedure TDBViewFrm_u.BtnActiveStoredProcClick(Sender: TObject);
+begin
+  DataSource1.DataSet.Close;
+  DataSource1.DataSet := FDStoredProc1;
+  FDStoredProc1.Active := True;
+  LblActivateItem.Caption := 'Stored Proc';
 end;
 
 procedure TDBViewFrm_u.BtnActiveTableClick(Sender: TObject);
@@ -81,23 +100,13 @@ begin
   DataSource1.DataSet.Close;
   DataSource1.DataSet := FDTable1;
   FDTable1.Active := True;
+  LblActivateItem.Caption := 'Table 1';
 end;
-
+{______________________________________________________________________________}
 procedure TDBViewFrm_u.BtnClearGridClick(Sender: TObject);
 begin
   DataSource1.DataSet.Close;
-end;
-
-procedure TDBViewFrm_u.BtnDisableLoginClick(Sender: TObject);
-begin
-  FDConnection1.Params.Password := '221266';
-  FDConnection1.LoginPrompt := False;
-end;
-
-procedure TDBViewFrm_u.BtnEnableLoginClick(Sender: TObject);
-begin
-  FDConnection1.Params.Password.Empty;
-  FDConnection1.LoginPrompt := True;
+  LblActivateItem.Caption := 'No active';
 end;
 
 end.
