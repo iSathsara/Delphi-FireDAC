@@ -2,7 +2,7 @@ object DBViewFrm_u: TDBViewFrm_u
   Left = 0
   Top = 0
   Caption = 'DB view with Login'
-  ClientHeight = 534
+  ClientHeight = 528
   ClientWidth = 895
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -14,7 +14,7 @@ object DBViewFrm_u: TDBViewFrm_u
   PixelsPerInch = 96
   DesignSize = (
     895
-    534)
+    528)
   TextHeight = 15
   object LblActivateItem: TLabel
     AlignWithMargins = True
@@ -44,14 +44,15 @@ object DBViewFrm_u: TDBViewFrm_u
   end
   object Panel1: TPanel
     Left = 759
-    Top = 39
+    Top = 37
     Width = 128
-    Height = 454
+    Height = 448
     Anchors = [akTop, akRight, akBottom]
     TabOrder = 2
+    ExplicitHeight = 454
     DesignSize = (
       128
-      454)
+      448)
     object BtnActivateQuery1: TButton
       Left = 8
       Top = 55
@@ -81,13 +82,14 @@ object DBViewFrm_u: TDBViewFrm_u
     end
     object BtnClearGrid: TButton
       Left = 8
-      Top = 394
+      Top = 388
       Width = 113
       Height = 25
       Anchors = [akRight, akBottom]
       Caption = 'Clear'
       TabOrder = 3
       OnClick = BtnClearGridClick
+      ExplicitTop = 394
     end
     object BtnActiveStoredProc: TButton
       Left = 8
@@ -101,19 +103,20 @@ object DBViewFrm_u: TDBViewFrm_u
   end
   object BitBtn1: TBitBtn
     Left = 767
-    Top = 464
+    Top = 458
     Width = 113
     Height = 25
     Anchors = [akRight, akBottom]
     Kind = bkClose
     NumGlyphs = 2
     TabOrder = 3
+    ExplicitTop = 464
   end
   object DBGrid1: TDBGrid
     Left = 8
     Top = 39
     Width = 745
-    Height = 454
+    Height = 448
     Anchors = [akLeft, akTop, akRight, akBottom]
     DataSource = DataSource1
     TabOrder = 1
@@ -146,7 +149,7 @@ object DBViewFrm_u: TDBViewFrm_u
     Connection = FDConnection1
     SQL.Strings = (
       'SELECT * FROM CUSTOMER')
-    Left = 160
+    Left = 152
     Top = 280
     object FDQuery1CUST_NO: TIntegerField
       FieldName = 'CUST_NO'
@@ -219,21 +222,21 @@ object DBViewFrm_u: TDBViewFrm_u
     Connection = FDConnection1
     SQL.Strings = (
       'SELECT * FROM CUSTOMER WHERE CUST_NO > 1010')
-    Left = 248
+    Left = 256
     Top = 288
   end
   object FDTable1: TFDTable
     IndexFieldNames = 'EMP_NO'
     Connection = FDConnection1
     TableName = 'EMPLOYEE'
-    Left = 96
-    Top = 216
+    Left = 80
+    Top = 208
   end
   object FDStoredProc1: TFDStoredProc
     Active = True
     Connection = FDConnection1
     StoredProcName = 'ORG_CHART'
-    Left = 336
+    Left = 368
     Top = 256
     ParamData = <
       item

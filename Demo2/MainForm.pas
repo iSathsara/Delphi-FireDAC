@@ -73,7 +73,6 @@ end;
 {______________________________________________________________________________}
 procedure TDBViewFrm_u.BtnActivateQuery1Click(Sender: TObject);
 begin
-  DataSource1.DataSet.Close;
   DataSource1.DataSet := FDQuery1;
   FDQuery1.Active := True;
   LblActivateItem.Caption := 'Query 1';
@@ -81,7 +80,6 @@ end;
 
 procedure TDBViewFrm_u.BtnActivateQuery2Click(Sender: TObject);
 begin
-  DataSource1.DataSet.Close;
   DataSource1.DataSet := FDQuery2;
   FDQuery2.Active := True;
   LblActivateItem.Caption := 'Query 2';
@@ -89,7 +87,6 @@ end;
 
 procedure TDBViewFrm_u.BtnActiveStoredProcClick(Sender: TObject);
 begin
-  DataSource1.DataSet.Close;
   DataSource1.DataSet := FDStoredProc1;
   FDStoredProc1.Active := True;
   LblActivateItem.Caption := 'Stored Proc';
@@ -97,7 +94,6 @@ end;
 
 procedure TDBViewFrm_u.BtnActiveTableClick(Sender: TObject);
 begin
-  DataSource1.DataSet.Close;
   DataSource1.DataSet := FDTable1;
   FDTable1.Active := True;
   LblActivateItem.Caption := 'Table 1';
