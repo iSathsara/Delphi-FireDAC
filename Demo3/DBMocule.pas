@@ -37,12 +37,12 @@ uses DataPaths;
 procedure TSharedDataModule.DataModuleCreate(Sender: TObject);
 begin
   FDConnection1.Params.Clear;
-  FDConnection1.Params.AddStrings();
+  FDConnection1.Params.AddStrings(DataPaths.ConnectionParams);
   try
     FDConnection1.Open();
   except
     on Exception do begin
-      raise Exception.Create('Invalid path configuration. Update the paths in DataPaths module');
+      raise Exception.Create('Invalid DB params configuration. Check Params in Datapaths unit');
     end;
   end;
 

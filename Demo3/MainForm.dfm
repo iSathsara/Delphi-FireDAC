@@ -2,18 +2,20 @@ object Form2: TForm2
   Left = 0
   Top = 0
   Caption = 'FireDAC Navigation'
-  ClientHeight = 582
-  ClientWidth = 1097
+  ClientHeight = 583
+  ClientWidth = 1101
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Menu = MainMenu1
+  OnCreate = FormCreate
   PixelsPerInch = 96
   DesignSize = (
-    1097
-    582)
+    1101
+    583)
   TextHeight = 15
   object Panel1: TPanel
     AlignWithMargins = True
@@ -99,10 +101,11 @@ object Form2: TForm2
     AlignWithMargins = True
     Left = 374
     Top = 0
-    Width = 715
+    Width = 719
     Height = 81
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 2
+    ExplicitWidth = 715
     object SpinEdit1: TSpinEdit
       Left = 16
       Top = 13
@@ -184,9 +187,10 @@ object Form2: TForm2
     AlignWithMargins = True
     Left = 0
     Top = 118
-    Width = 1090
-    Height = 434
+    Width = 1094
+    Height = 435
     Anchors = [akLeft, akTop, akRight, akBottom]
+    DataSource = DataSource1
     TabOrder = 4
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -194,42 +198,77 @@ object Form2: TForm2
     TitleFont.Name = 'Segoe UI'
     TitleFont.Style = []
   end
-  object Panel4: TPanel
-    Left = 0
-    Top = 555
-    Width = 1089
-    Height = 25
-    Anchors = [akLeft, akRight, akBottom]
-    TabOrder = 5
-    ExplicitTop = 553
-    object LblElapseTime: TLabel
-      Left = 0
-      Top = 3
-      Width = 140
-      Height = 15
-      Caption = 'Elapse Time: 2 miliseconds'
-    end
-    object LblNumberOfRecords: TLabel
-      Left = 222
-      Top = 3
-      Width = 81
-      Height = 15
-      Caption = 'Record 19 of 19'
-    end
-    object LblStatus: TLabel
-      Left = 486
-      Top = 3
-      Width = 90
-      Height = 15
-      Caption = 'State = dsBrowse'
-    end
-    object LblEofStatus: TLabel
-      Left = 764
-      Top = 3
-      Width = 125
-      Height = 14
-      Alignment = taRightJustify
-      Caption = 'BOF = False, EOF = True'
+  object StatusBar1: TStatusBar
+    AlignWithMargins = True
+    Left = 3
+    Top = 559
+    Width = 1095
+    Height = 21
+    Panels = <
+      item
+        Width = 250
+      end
+      item
+        Width = 250
+      end
+      item
+        Text = 'State = dsBrowse'
+        Width = 250
+      end
+      item
+        Width = 250
+      end>
+    ExplicitTop = 558
+  end
+  object FDQuery1: TFDQuery
+    AfterOpen = FDQuery1AfterOpen
+    AfterClose = FDQuery1AfterClose
+    Connection = SharedDataModule.FDConnection1
+    Left = 208
+    Top = 320
+  end
+  object DataSource1: TDataSource
+    DataSet = FDQuery1
+    OnStateChange = DataSource1StateChange
+    OnDataChange = DataSource1DataChange
+    Left = 112
+    Top = 240
+  end
+  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Provider = 'Forms'
+    Left = 336
+    Top = 232
+  end
+  object OpenDialog1: TOpenDialog
+    Filter = 
+      'XML Files (*.xml)|*.xml|CDS Files (*.cds)|*.cds|All ClientDataSe' +
+      't Files (*.xml,*.cds)|*.xml;*.cds|All Files (*.*)|*.*'
+    InitialDir = 'c:\program files\common files\borland shared\data'
+    Title = 'select Client Dataset to Navigate'
+    Left = 400
+    Top = 328
+  end
+  object MainMenu1: TMainMenu
+    Left = 544
+    Top = 272
+    object File1: TMenuItem
+      Caption = '&File'
+      object Open: TMenuItem
+        Caption = 'Open'
+        ShortCut = 16451
+        OnClick = OpenClick
+      end
+      object Close: TMenuItem
+        Caption = 'Close'
+        OnClick = CloseClick
+      end
+      object N1: TMenuItem
+        Caption = '-'
+      end
+      object Exit: TMenuItem
+        Caption = 'Exit'
+        OnClick = ExitClick
+      end
     end
   end
 end

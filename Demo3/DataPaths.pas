@@ -42,12 +42,12 @@ end;
 {______________________________________________________________________________}
 Initialization
   // initialize DB Params
-  ConnectionParams := TStrings.Create;
+  ConnectionParams := TStringList.Create;
   DataPaths.ValidatePath(FDEmpDBPath);
-  ConnectionParams.Add('Database='+FDEmpDBPath);
+  ConnectionParams.Add('Database='+Datapaths.FDEmpDBPath);
   ConnectionParams.Add('User_Name=RESTOMAX');
   ConnectionParams.Add('Password=221266');
-  ConnectionParams.Add('Protocol=local');
+  ConnectionParams.Add('Protocol=Local');
   ConnectionParams.Add('DriverID=FB');
 
 Finalization

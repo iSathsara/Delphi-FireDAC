@@ -5,7 +5,12 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Grids,
-  Vcl.DBGrids, Vcl.DBCtrls, Vcl.Samples.Spin, Vcl.ExtCtrls;
+  Vcl.DBGrids, Vcl.DBCtrls, Vcl.Samples.Spin, Vcl.ExtCtrls, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  FireDAC.UI.Intf, FireDAC.VCLUI.Wait, Vcl.Menus, FireDAC.Comp.UI,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, System.Diagnostics,
+  DBMocule, TypInfo, Vcl.ComCtrls;
 
 type
   TForm2 = class(TForm)
@@ -30,11 +35,25 @@ type
     Button6: TButton;
     DBNavigator1: TDBNavigator;
     DBGrid1: TDBGrid;
-    Panel4: TPanel;
-    LblElapseTime: TLabel;
-    LblNumberOfRecords: TLabel;
-    LblStatus: TLabel;
-    LblEofStatus: TLabel;
+    FDQuery1: TFDQuery;
+    DataSource1: TDataSource;
+    FDGUIxWaitCursor1: TFDGUIxWaitCursor;
+    OpenDialog1: TOpenDialog;
+    MainMenu1: TMainMenu;
+    File1: TMenuItem;                            // main menu main item
+    Open: TMenuItem;                             // main menu sub-item
+    Close: TMenuItem;                            // main menu sub-item
+    N1: TMenuItem;                               // horizontal line in Menu
+    Exit: TMenuItem;                             // main menu sub-item
+    StatusBar1: TStatusBar;
+    procedure FDQuery1AfterOpen(DataSet: TDataSet);
+    procedure DataSource1StateChange(Sender: TObject);
+    procedure CloseClick(Sender: TObject);
+    procedure FDQuery1AfterClose(DataSet: TDataSet);
+    procedure DataSource1DataChange(Sender: TObject; Field: TField);
+    procedure ExitClick(Sender: TObject);
+    procedure OpenClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -43,9 +62,84 @@ type
 
 var
   Form2: TForm2;
+  StopWatch : TStopwatch;
 
 implementation
 
 {$R *.dfm}
+
+// Stopwatch procedures
+{______________________________________________________________________________}
+procedure Start;
+begin
+  StopWatch := TStopwatch.StartNew;
+end;
+
+procedure Complete;
+begin
+  StopWatch.Stop;
+  Form2.StatusBar1.Panels[0].Text:= 'Elapsed Time: '+StopWatch.ElapsedMilliseconds.ToString+' miliseconds';
+end;
+
+procedure TForm2.FormCreate(Sender: TObject);
+begin
+  FDQuery1.Open();
+end;
+
+{______________________________________________________________________________}
+{______________________________________________________________________________}
+
+// FDQuery
+{______________________________________________________________________________}
+procedure TForm2.FDQuery1AfterClose(DataSet: TDataSet);
+begin
+  Open.Enabled := True;
+  Close.Enabled := False;
+end;
+
+procedure TForm2.FDQuery1AfterOpen(DataSet: TDataSet);
+begin
+  Open.Enabled := False;
+  Close.Enabled := True;
+end;
+
+{______________________________________________________________________________}
+{______________________________________________________________________________}
+
+// DataSource
+{______________________________________________________________________________}
+procedure TForm2.DataSource1DataChange(Sender: TObject; Field: TField);
+begin
+  // Display details in statusbar
+  StatusBar1.Panels[1].Text:= 'Records '+IntToStr(FDQuery1.RecNo)+' of '+IntToStr(FDQuery1.RecordCount);
+  StatusBar1.Panels[3].Text := 'BOF = '+BoolToStr(FDQuery1.Bof, True)+' '+' EOF = '+BoolToStr(FDQuery1.Eof, True);
+end;
+
+procedure TForm2.DataSource1StateChange(Sender: TObject);
+begin
+  StatusBar1.Panels[2].Text := 'Status: '+GetEnumName(TypeInfo(TDataSetState),Ord(FDQuery1.State));
+end;
+{______________________________________________________________________________}
+{______________________________________________________________________________}
+
+// Main Menu
+procedure TForm2.CloseClick(Sender: TObject);
+begin
+  FDQuery1.Close;
+end;
+
+procedure TForm2.ExitClick(Sender: TObject);
+begin
+  // close the form
+end;
+
+procedure TForm2.OpenClick(Sender: TObject);
+begin
+  Start;
+  FDQuery1.Open();
+  Complete;
+end;
+{______________________________________________________________________________}
+{______________________________________________________________________________}
 
 end.
