@@ -31,6 +31,7 @@ object Form2: TForm2
       Height = 25
       Caption = 'First'
       TabOrder = 0
+      OnClick = BtnFirstClick
     end
     object BtnPrev: TButton
       Left = 96
@@ -39,6 +40,7 @@ object Form2: TForm2
       Height = 25
       Caption = 'Prev'
       TabOrder = 1
+      OnClick = BtnPrevClick
     end
     object BtnLast: TButton
       Left = 15
@@ -47,6 +49,7 @@ object Form2: TForm2
       Height = 25
       Caption = 'Last'
       TabOrder = 2
+      OnClick = BtnLastClick
     end
     object BtnNext: TButton
       Left = 96
@@ -55,6 +58,7 @@ object Form2: TForm2
       Height = 25
       Caption = 'Next'
       TabOrder = 3
+      OnClick = BtnNextClick
     end
   end
   object Panel2: TPanel
@@ -181,6 +185,7 @@ object Form2: TForm2
     Top = 87
     Width = 1090
     Height = 25
+    DataSource = DataSource1
     TabOrder = 3
   end
   object DBGrid1: TDBGrid
@@ -212,7 +217,6 @@ object Form2: TForm2
         Width = 250
       end
       item
-        Text = 'State = dsBrowse'
         Width = 250
       end
       item
@@ -224,6 +228,8 @@ object Form2: TForm2
     AfterOpen = FDQuery1AfterOpen
     AfterClose = FDQuery1AfterClose
     Connection = SharedDataModule.FDConnection1
+    SQL.Strings = (
+      'SELECT * FROM Customer')
     Left = 208
     Top = 320
   end

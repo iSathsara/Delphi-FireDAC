@@ -54,6 +54,10 @@ type
     procedure ExitClick(Sender: TObject);
     procedure OpenClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure BtnFirstClick(Sender: TObject);
+    procedure BtnLastClick(Sender: TObject);
+    procedure BtnPrevClick(Sender: TObject);
+    procedure BtnNextClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -80,12 +84,11 @@ begin
   StopWatch.Stop;
   Form2.StatusBar1.Panels[0].Text:= 'Elapsed Time: '+StopWatch.ElapsedMilliseconds.ToString+' miliseconds';
 end;
-
+{______________________________________________________________________________}
 procedure TForm2.FormCreate(Sender: TObject);
 begin
-  FDQuery1.Open();
+  FDQuery1.Active := True;
 end;
-
 {______________________________________________________________________________}
 {______________________________________________________________________________}
 
@@ -102,7 +105,6 @@ begin
   Open.Enabled := False;
   Close.Enabled := True;
 end;
-
 {______________________________________________________________________________}
 {______________________________________________________________________________}
 
@@ -112,7 +114,7 @@ procedure TForm2.DataSource1DataChange(Sender: TObject; Field: TField);
 begin
   // Display details in statusbar
   StatusBar1.Panels[1].Text:= 'Records '+IntToStr(FDQuery1.RecNo)+' of '+IntToStr(FDQuery1.RecordCount);
-  StatusBar1.Panels[3].Text := 'BOF = '+BoolToStr(FDQuery1.Bof, True)+' '+' EOF = '+BoolToStr(FDQuery1.Eof, True);
+  StatusBar1.Panels[3].Text:= 'BOF = '+BoolToStr(FDQuery1.Bof, True)+' '+' EOF = '+BoolToStr(FDQuery1.Eof, True);
 end;
 
 procedure TForm2.DataSource1StateChange(Sender: TObject);
@@ -121,8 +123,37 @@ begin
 end;
 {______________________________________________________________________________}
 {______________________________________________________________________________}
+// Top panel 1 operations
+procedure TForm2.BtnFirstClick(Sender: TObject);
+begin
+  Start;
+  FDQuery1.First;
+  Complete;
+end;
 
-// Main Menu
+procedure TForm2.BtnLastClick(Sender: TObject);
+begin
+  Start;
+  FDQuery1.Last;
+  Complete;
+end;
+
+procedure TForm2.BtnPrevClick(Sender: TObject);
+begin
+  Start;
+  FDQuery1.Prior;
+  Complete;
+end;
+
+procedure TForm2.BtnNextClick(Sender: TObject);
+begin
+  Start;
+  FDQuery1.Next;
+  Complete;
+end;
+{______________________________________________________________________________}
+{______________________________________________________________________________}
+// Main menu operations
 procedure TForm2.CloseClick(Sender: TObject);
 begin
   FDQuery1.Close;
@@ -131,6 +162,7 @@ end;
 procedure TForm2.ExitClick(Sender: TObject);
 begin
   // close the form
+
 end;
 
 procedure TForm2.OpenClick(Sender: TObject);
