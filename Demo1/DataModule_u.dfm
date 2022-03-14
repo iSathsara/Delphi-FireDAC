@@ -5,9 +5,8 @@ object DataModule1: TDataModule1
   object EmployeedbConnection: TFDConnection
     Params.Strings = (
       'ConnectionDef=EmployeeDB')
-    Connected = True
     LoginPrompt = False
-    Left = 140
+    Left = 120
     Top = 105
   end
 end

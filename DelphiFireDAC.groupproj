@@ -6,6 +6,9 @@
         <Projects Include="Demo1\FireDAC_Demo_1.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="Demo2\FireDAC_Demo_2.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -23,14 +26,23 @@
     <Target Name="FireDAC_Demo_1:Make">
         <MSBuild Projects="Demo1\FireDAC_Demo_1.dproj" Targets="Make"/>
     </Target>
+    <Target Name="FireDAC_Demo_2">
+        <MSBuild Projects="Demo2\FireDAC_Demo_2.dproj"/>
+    </Target>
+    <Target Name="FireDAC_Demo_2:Clean">
+        <MSBuild Projects="Demo2\FireDAC_Demo_2.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FireDAC_Demo_2:Make">
+        <MSBuild Projects="Demo2\FireDAC_Demo_2.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="FireDAC_Demo_1"/>
+        <CallTarget Targets="FireDAC_Demo_1;FireDAC_Demo_2"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="FireDAC_Demo_1:Clean"/>
+        <CallTarget Targets="FireDAC_Demo_1:Clean;FireDAC_Demo_2:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="FireDAC_Demo_1:Make"/>
+        <CallTarget Targets="FireDAC_Demo_1:Make;FireDAC_Demo_2:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

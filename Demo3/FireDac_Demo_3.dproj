@@ -1,6 +1,6 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{D510941D-119A-4FFD-ACC2-CBA98C9B24A4}</ProjectGuid>
+        <ProjectGuid>{D2DBDCF4-DC88-4B94-899D-695B5783E5CC}</ProjectGuid>
         <ProjectVersion>19.3</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
@@ -8,7 +8,7 @@
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Application</AppType>
-        <MainSource>FireDAC_Demo_1.dpr</MainSource>
+        <MainSource>FireDac_Demo_3.dpr</MainSource>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
@@ -57,7 +57,7 @@
         <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
         <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
-        <SanitizedProjectName>FireDAC_Demo_1</SanitizedProjectName>
+        <SanitizedProjectName>FireDac_Demo_3</SanitizedProjectName>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_UsePackage>vclwinx;DataSnapServer;GR32DSGNRS28;fmx;emshosting;vclie;DbxCommonDriver;bindengine;IndyIPCommon;VCLRESTComponents;DBXMSSQLDriver;FireDACCommonODBC;emsclient;FireDACCommonDriver;dxTileControlRS28;appanalytics;IndyProtocols;vclx;dxPSPrVwRibbonRS28;IndyIPClient;dbxcds;vcledge;cxLibraryRS28;hclcoreRS28;bindcompvclwinx;FmxTeeUI;frxeRS28;dxGDIPlusRS28;emsedge;bindcompfmx;DBXFirebirdDriver;dxCoreRS28;inetdb;cxPageControlRS28;dxPSCoreRS28;FireDACSqliteDriver;DbxClientDriver;FireDACASADriver;dxTabbedMDIRS28;JclVcl;soapmidas;dxBarRS28;Tee;vclactnband;dxWizardControlRS28;VirtualTreesRS28;fmxFireDAC;dbexpress;Jcl;CEF4DelphiRS28;FireDACInfxDriver;TeeUI;DBXMySQLDriver;VclSmp;inet;DataSnapCommon;dxServerModeRS28;dxPSdxLCLnkRS28;rmxUtilsRS28;vcltouch;fmxase;dxBarDBNavRS28;EanRS28;DBXOdbcDriver;cxEditorsRS28;dbrtl;FireDACDBXDriver;FireDACOracleDriver;dxPSLnksRS28;fmxdae;dxPScxCommonRS28;EanEditorsRS28;TeeDB;FireDACMSAccDriver;JvCustom;CustomIPTransport;FireDACMSSQLDriver;JvSystem;DataSnapIndy10ServerTransport;JvControls;fsTeeRS28;DataSnapConnectors;vcldsnap;DBXInterBaseDriver;dxComnRS28;FireDACMongoDBDriver;fsDBRS28;IndySystem;FireDACTDataDriver;cxBarEditItemRS28;dxOfficeCoreRS28;vcldb;htmlcompRS28;dxPSDBTeeChartRS28;dxRibbonRS28;dxmdsRS28;dxPScxExtCommonRS28;vclFireDAC;JvCore;bindcomp;FireDACCommon;DataSnapServerMidas;FireDACODBCDriver;emsserverresource;IndyCore;RESTBackendComponents;dxBarExtDBItemsRS28;bindcompdbx;rtl;FireDACMySQLDriver;gtPDFkitRS28;sgcWebSocketsRS28;FireDACADSDriver;dxPSPrVwAdvRS28;RESTComponents;dxPSTeeChartRS28;DBXSqliteDriver;vcl;IndyIPServer;dsnapxml;dsnapcon;DataSnapClient;DataSnapProviderClient;adortl;dxBarExtItemsRS28;fsRS28;DBXSybaseASEDriver;JvRuntimeDesign;DBXDb2Driver;GR32RS28;dxSpellCheckerRS28;cxGridRS28;vclimg;DataSnapFireDAC;emsclientfiredac;FireDACPgDriver;FireDAC;FireDACDSDriver;inetdbxpress;xmlrtl;tethering;cxDataRS28;JvStdCtrls;frxRS28;bindcompvcl;dsnap;frxDBRS28;frxTeeRS28;CloudService;DBXSybaseASADriver;DBXOracleDriver;FireDACDb2Driver;DBXInformixDriver;fmxobj;bindcompvclsmp;DataSnapNativeClient;FMXTee;dxPScxPCProdRS28;DatasnapConnectorsFreePascal;soaprtl;soapserver;FireDACIBDriver;$(DCC_UsePackage)</DCC_UsePackage>
@@ -100,16 +100,16 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="DBViewFrm_u.pas">
-            <Form>Form1</Form>
+        <DCCReference Include="MainForm.pas">
+            <Form>Form2</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="DataModule_u.pas">
-            <Form>DataModule1</Form>
+        <DCCReference Include="DBMocule.pas">
+            <Form>DataModule3</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <None Include="ModelSupport_FireDAC_Demo_1\default.txaPackage"/>
+        <DCCReference Include="DataPaths.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -128,19 +128,13 @@
         <BorlandProject>
             <Delphi.Personality>
                 <Source>
-                    <Source Name="MainSource">FireDAC_Demo_1.dpr</Source>
+                    <Source Name="MainSource">FireDac_Demo_3.dpr</Source>
                 </Source>
             </Delphi.Personality>
             <Deployment Version="3">
-                <DeployFile LocalName="Win32\Debug\FireDAC_Demo_1.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="Win32\Debug\FireDac_Demo_3.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
-                        <RemoteName>FireDAC_Demo_1.exe</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="ModelSupport_FireDAC_Demo_1\default.txaPackage" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Win32">
-                        <RemoteDir>.\</RemoteDir>
+                        <RemoteName>FireDac_Demo_3.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -945,10 +939,10 @@
                 </DeployClass>
                 <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="OSX64" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Android64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="OSXARM64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Linux64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
@@ -959,7 +953,6 @@
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">False</Platform>
             </Platforms>
-            <ModelSupport>True</ModelSupport>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>
