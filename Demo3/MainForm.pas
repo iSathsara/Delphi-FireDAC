@@ -21,15 +21,11 @@ type
     BtnPrev: TButton;
     BtnLast: TButton;
     BtnNext: TButton;
-    RadEnable: TRadioButton;
-    RadDisable: TRadioButton;
     BtnScanForward: TButton;
     BtnScanBackward: TButton;
-    SpinEdit1: TSpinEdit;
-    SpinEdit2: TSpinEdit;
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
+    BtnMoveBy: TButton;
+    BtnSearch: TButton;
+    BtnGetBookmark: TButton;
     Button4: TButton;
     Button5: TButton;
     Button6: TButton;
@@ -46,6 +42,9 @@ type
     N1: TMenuItem;                               // horizontal line in Menu
     Exit: TMenuItem;                             // main menu sub-item
     StatusBar1: TStatusBar;
+    RadioControls: TRadioGroup;
+    SpnMoveRecord: TSpinEdit;
+    EdtSearch: TEdit;
     procedure FDQuery1AfterOpen(DataSet: TDataSet);
     procedure DataSource1StateChange(Sender: TObject);
     procedure CloseClick(Sender: TObject);
@@ -58,8 +57,14 @@ type
     procedure BtnLastClick(Sender: TObject);
     procedure BtnPrevClick(Sender: TObject);
     procedure BtnNextClick(Sender: TObject);
+    procedure BtnScanForwardClick(Sender: TObject);
+    procedure BtnScanBackwardClick(Sender: TObject);
+    procedure BtnMoveByClick(Sender: TObject);
+    procedure BtnGetBookmarkClick(Sender: TObject);
+    procedure BtnSearchClick(Sender: TObject);
   private
     { Private declarations }
+    fBookmark : TBookmark;
   public
     { Public declarations }
   end;
@@ -73,6 +78,7 @@ implementation
 {$R *.dfm}
 
 // Stopwatch procedures
+// stopwatch comes with System.Diagnostics
 {______________________________________________________________________________}
 procedure Start;
 begin
@@ -153,6 +159,41 @@ begin
 end;
 {______________________________________________________________________________}
 {______________________________________________________________________________}
+// Top panel 2 - Controls
+procedure TForm2.BtnScanBackwardClick(Sender: TObject);
+begin
+  Start;
+  if RadioControls.ItemIndex = 0 then begin
+
+    FDQuery1.Last;
+    while not FDQuery1.Bof do
+      FDQuery1.Prior;
+
+  end else begin
+    // disable scan when ItemIndex = 1
+    FDQuery1.DisableControls;
+  end;
+  Complete;
+end;
+
+procedure TForm2.BtnScanForwardClick(Sender: TObject);
+begin
+  Start;
+  if RadioControls.ItemIndex = 0 then begin   // ItemIndex represents the Enable button in GUI.
+
+    FDQuery1.First;
+
+    while not FDQuery1.Eof do
+      FDQuery1.Next;
+
+  end else begin
+    // disable scan when ItemIndex = 1
+    FDQuery1.DisableControls;
+  end;
+  Complete;
+end;
+{______________________________________________________________________________}
+{______________________________________________________________________________}
 // Main menu operations
 procedure TForm2.CloseClick(Sender: TObject);
 begin
@@ -173,5 +214,47 @@ begin
 end;
 {______________________________________________________________________________}
 {______________________________________________________________________________}
+// Panel 3 Controls
+procedure TForm2.BtnMoveByClick(Sender: TObject);
+begin
+  Start;
+  FDQuery1.MoveBy(SpnMoveRecord.Value);        // Use MoveBy() to move through records
+  SpnMoveRecord.Value := FDQuery1.RecNo;
+  Complete;
+end;
+
+// Bookmark
+procedure TForm2.BtnGetBookmarkClick(Sender: TObject);
+begin
+  fBookmark := FDQuery1.GetBookmark;
+  BtnGetBookmark.Enabled := True;
+end;
+
+// Search
+procedure TForm2.BtnSearchClick(Sender: TObject);
+var RecNo: Integer;
+begin
+  Start;
+
+  if EdtSearch.Text <> EmptyStr then begin
+
+    RecNo := StrToInt(EdtSearch.Text);
+
+    while (not FDQuery1.Eof) and (not FDQuery1.Locate('CUST_NO', RecNo, [])) do begin
+
+      if not FDQuery1.Locate('CUST_NO', RecNo, []) then begin
+        ShowMessage('Record not found!');
+        FDQuery1.First;
+        break;
+      end;
+
+      FDQuery1.Next;
+    end;
+
+  end else
+    ShowMessage('Input Field is empty!');
+
+  Complete;
+end;
 
 end.
