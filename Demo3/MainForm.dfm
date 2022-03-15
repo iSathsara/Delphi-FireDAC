@@ -11,6 +11,7 @@ object Form2: TForm2
   Font.Name = 'Segoe UI'
   Font.Style = []
   Menu = MainMenu1
+  Position = poScreenCenter
   OnCreate = FormCreate
   PixelsPerInch = 96
   DesignSize = (
@@ -23,6 +24,8 @@ object Form2: TForm2
     Top = 0
     Width = 177
     Height = 81
+    Color = clMenuHighlight
+    ParentBackground = False
     TabOrder = 0
     object BtnFirst: TButton
       Left = 16
@@ -38,7 +41,7 @@ object Form2: TForm2
       Top = 16
       Width = 66
       Height = 25
-      Caption = 'Prev'
+      Caption = 'Prior'
       TabOrder = 1
       OnClick = BtnPrevClick
     end
@@ -67,30 +70,17 @@ object Form2: TForm2
     Top = 0
     Width = 185
     Height = 81
+    Color = clMoneyGreen
+    ParentBackground = False
     TabOrder = 1
-    object RadEnable: TRadioButton
-      Left = 16
-      Top = 20
-      Width = 57
-      Height = 17
-      Caption = 'Enable'
-      TabOrder = 0
-    end
-    object RadDisable: TRadioButton
-      Left = 104
-      Top = 20
-      Width = 65
-      Height = 17
-      Caption = 'Disable'
-      TabOrder = 1
-    end
     object BtnScanForward: TButton
       Left = 8
       Top = 43
       Width = 83
       Height = 25
       Caption = 'Scan Forward'
-      TabOrder = 2
+      TabOrder = 0
+      OnClick = BtnScanForwardClick
     end
     object BtnScanBackward: TButton
       Left = 97
@@ -98,7 +88,21 @@ object Form2: TForm2
       Width = 80
       Height = 25
       Caption = 'Scan Back'
-      TabOrder = 3
+      TabOrder = 1
+      OnClick = BtnScanBackwardClick
+    end
+    object RadioControls: TRadioGroup
+      Left = 10
+      Top = 4
+      Width = 159
+      Height = 37
+      Caption = 'Controls'
+      Columns = 2
+      ItemIndex = 0
+      Items.Strings = (
+        'Enabled'
+        'Disabled')
+      TabOrder = 2
     end
   end
   object Panel3: TPanel
@@ -108,75 +112,78 @@ object Form2: TForm2
     Width = 719
     Height = 81
     Anchors = [akLeft, akTop, akRight]
+    Color = clGradientActiveCaption
+    ParentBackground = False
     TabOrder = 2
     ExplicitWidth = 715
-    object SpinEdit1: TSpinEdit
+    object BtnMoveBy: TButton
       Left = 16
-      Top = 13
+      Top = 43
       Width = 81
-      Height = 24
-      MaxValue = 0
-      MinValue = 0
+      Height = 25
+      Caption = 'Move By'
       TabOrder = 0
-      Value = 0
+      OnClick = BtnMoveByClick
     end
-    object SpinEdit2: TSpinEdit
-      Left = 112
-      Top = 13
-      Width = 73
-      Height = 24
-      MaxValue = 0
-      MinValue = 0
+    object BtnSearch: TButton
+      Left = 144
+      Top = 43
+      Width = 121
+      Height = 25
+      Caption = 'S E A R C H'
       TabOrder = 1
-      Value = 0
+      OnClick = BtnSearchClick
     end
-    object Button1: TButton
-      Left = 16
-      Top = 43
-      Width = 81
-      Height = 25
-      Caption = 'Button1'
-      TabOrder = 2
-    end
-    object Button2: TButton
-      Left = 112
-      Top = 43
-      Width = 73
-      Height = 25
-      Caption = 'Button2'
-      TabOrder = 3
-    end
-    object Button3: TButton
-      Left = 232
+    object BtnGetBookmark: TButton
+      Left = 320
       Top = 12
       Width = 129
       Height = 25
-      Caption = 'Button3'
-      TabOrder = 4
+      Caption = 'Get Bookmark'
+      TabOrder = 2
+      OnClick = BtnGetBookmarkClick
     end
     object Button4: TButton
-      Left = 232
+      Left = 320
       Top = 43
       Width = 129
       Height = 25
       Caption = 'Button4'
-      TabOrder = 5
+      TabOrder = 3
     end
     object Button5: TButton
-      Left = 375
+      Left = 463
       Top = 12
       Width = 121
       Height = 25
       Caption = 'Button5'
-      TabOrder = 6
+      TabOrder = 4
     end
     object Button6: TButton
-      Left = 375
+      Left = 463
       Top = 43
       Width = 121
       Height = 25
       Caption = 'Button6'
+      TabOrder = 5
+    end
+    object SpnMoveRecord: TSpinEdit
+      Left = 16
+      Top = 13
+      Width = 81
+      Height = 24
+      MaxValue = 50
+      MinValue = -50
+      TabOrder = 6
+      Value = 0
+    end
+    object EdtSearch: TEdit
+      Left = 144
+      Top = 14
+      Width = 121
+      Height = 23
       TabOrder = 7
+      TextHint = 'Record No'
     end
   end
   object DBNavigator1: TDBNavigator
@@ -209,6 +216,7 @@ object Form2: TForm2
     Top = 559
     Width = 1095
     Height = 21
+    Color = clYellow
     Panels = <
       item
         Width = 250
@@ -222,7 +230,7 @@ object Form2: TForm2
       item
         Width = 250
       end>
-    ExplicitTop = 558
+    ExplicitLeft = 8
   end
   object FDQuery1: TFDQuery
     AfterOpen = FDQuery1AfterOpen
@@ -230,20 +238,20 @@ object Form2: TForm2
     Connection = SharedDataModule.FDConnection1
     SQL.Strings = (
       'SELECT * FROM Customer')
-    Left = 208
-    Top = 320
+    Left = 328
+    Top = 312
   end
   object DataSource1: TDataSource
     DataSet = FDQuery1
     OnStateChange = DataSource1StateChange
     OnDataChange = DataSource1DataChange
-    Left = 112
-    Top = 240
+    Left = 336
+    Top = 224
   end
   object FDGUIxWaitCursor1: TFDGUIxWaitCursor
     Provider = 'Forms'
-    Left = 336
-    Top = 232
+    Left = 520
+    Top = 216
   end
   object OpenDialog1: TOpenDialog
     Filter = 
@@ -251,12 +259,12 @@ object Form2: TForm2
       't Files (*.xml,*.cds)|*.xml;*.cds|All Files (*.*)|*.*'
     InitialDir = 'c:\program files\common files\borland shared\data'
     Title = 'select Client Dataset to Navigate'
-    Left = 400
-    Top = 328
+    Left = 552
+    Top = 336
   end
   object MainMenu1: TMainMenu
-    Left = 544
-    Top = 272
+    Left = 40
+    Top = 176
     object File1: TMenuItem
       Caption = '&File'
       object Open: TMenuItem
