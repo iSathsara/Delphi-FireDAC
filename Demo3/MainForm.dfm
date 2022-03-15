@@ -22,7 +22,7 @@ object Form2: TForm2
     AlignWithMargins = True
     Left = 0
     Top = 0
-    Width = 177
+    Width = 266
     Height = 81
     Color = clMenuHighlight
     ParentBackground = False
@@ -30,16 +30,16 @@ object Form2: TForm2
     object BtnFirst: TButton
       Left = 16
       Top = 16
-      Width = 65
+      Width = 105
       Height = 25
       Caption = 'First'
       TabOrder = 0
       OnClick = BtnFirstClick
     end
     object BtnPrev: TButton
-      Left = 96
+      Left = 144
       Top = 16
-      Width = 66
+      Width = 97
       Height = 25
       Caption = 'Prior'
       TabOrder = 1
@@ -48,16 +48,16 @@ object Form2: TForm2
     object BtnLast: TButton
       Left = 15
       Top = 47
-      Width = 66
+      Width = 106
       Height = 25
       Caption = 'Last'
       TabOrder = 2
       OnClick = BtnLastClick
     end
     object BtnNext: TButton
-      Left = 96
+      Left = 144
       Top = 47
-      Width = 66
+      Width = 97
       Height = 25
       Caption = 'Next'
       TabOrder = 3
@@ -66,9 +66,9 @@ object Form2: TForm2
   end
   object Panel2: TPanel
     AlignWithMargins = True
-    Left = 183
+    Left = 272
     Top = 0
-    Width = 185
+    Width = 192
     Height = 81
     Color = clMoneyGreen
     ParentBackground = False
@@ -107,15 +107,14 @@ object Form2: TForm2
   end
   object Panel3: TPanel
     AlignWithMargins = True
-    Left = 374
+    Left = 480
     Top = 0
-    Width = 719
+    Width = 613
     Height = 81
     Anchors = [akLeft, akTop, akRight]
     Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 2
-    ExplicitWidth = 715
     object BtnMoveBy: TButton
       Left = 16
       Top = 43
@@ -197,7 +196,7 @@ object Form2: TForm2
   end
   object DBGrid1: TDBGrid
     AlignWithMargins = True
-    Left = 0
+    Left = -1
     Top = 118
     Width = 1094
     Height = 435

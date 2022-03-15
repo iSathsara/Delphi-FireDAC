@@ -240,16 +240,20 @@ begin
 
     RecNo := StrToInt(EdtSearch.Text);
 
-    while not FDQuery1.Eof do begin
-      if FDQuery1.Locate('CUST_NO', RecNo, []) then begin
-        FDQuery1.RecNo;
-      end else
+    while (not FDQuery1.Eof) and (not FDQuery1.Locate('CUST_NO', RecNo, [])) do begin
+
+      if not FDQuery1.Locate('CUST_NO', RecNo, []) then begin
         ShowMessage('Record not found!');
+        FDQuery1.First;
+        break;
+      end;
 
       FDQuery1.Next;
     end;
+
   end else
     ShowMessage('Input Field is empty!');
+
   Complete;
 end;
 
