@@ -1,4 +1,4 @@
-program FireDAC_Demo_1;
+program FDCrud_Demo;
 
 uses
   Vcl.Forms,

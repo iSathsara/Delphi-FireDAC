@@ -65,6 +65,7 @@ type
     procedure BtnGotoBookmarkClick(Sender: TObject);
     procedure BtnEditModeClick(Sender: TObject);
     procedure DBGrid1CellClick(Column: TColumn);
+    procedure BtnPostModeClick(Sender: TObject);
   private
     { Private declarations }
     fBookmark : TBookmark;
@@ -288,6 +289,12 @@ begin
 end;
 
 // Post Mode
-
+procedure TForm2.BtnPostModeClick(Sender: TObject);
+begin
+  Start;
+  FDQuery1.FieldByName('CUSTOMER').AsString := 'New Customer';
+  FDQuery1.Post;
+  Complete;
+end;
 
 end.

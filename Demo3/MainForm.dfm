@@ -25,7 +25,7 @@ object Form2: TForm2
     Top = 0
     Width = 266
     Height = 81
-    Color = clMenuHighlight
+    Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 0
     object BtnFirst: TButton
@@ -196,6 +196,7 @@ object Form2: TForm2
       Caption = 'Post Mode'
       Enabled = False
       TabOrder = 7
+      OnClick = BtnPostModeClick
     end
   end
   object DBNavigator1: TDBNavigator

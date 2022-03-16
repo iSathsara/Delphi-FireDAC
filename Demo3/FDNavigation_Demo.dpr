@@ -1,9 +1,9 @@
-program FireDac_Demo_3;
+program FDNavigation_Demo;
 
 uses
   Vcl.Forms,
   MainForm in 'MainForm.pas' {Form2},
-  DBMocule in 'DBMocule.pas' {DataModule3: TDataModule},
+  DBMocule in 'DBMocule.pas' {SharedDataModule: TDataModule},
   DataPaths in 'DataPaths.pas';
 
 {$R *.res}
@@ -11,7 +11,7 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TSharedDataModule, SharedDataModule);
   Application.CreateForm(TForm2, Form2);
-  Application.CreateForm(TDataModule3, DataModule3);
   Application.Run;
 end.

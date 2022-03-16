@@ -1,14 +1,14 @@
-program FireDAC_Demo_2;
+program FDIndexes_Demo;
 
 uses
   Vcl.Forms,
-  MainForm in 'MainForm.pas' {DBViewFrm_u};
+  MainForm_u in 'MainForm_u.pas' {Form3};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TDBViewFrm_u, DBViewFrm_u);
+  Application.CreateForm(TForm3, Form3);
   Application.Run;
 end.
