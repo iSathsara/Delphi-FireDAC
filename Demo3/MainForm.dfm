@@ -12,6 +12,7 @@ object Form2: TForm2
   Font.Style = []
   Menu = MainMenu1
   Position = poScreenCenter
+  WindowMenu = Exit
   OnCreate = FormCreate
   PixelsPerInch = 96
   DesignSize = (
@@ -68,7 +69,7 @@ object Form2: TForm2
     AlignWithMargins = True
     Left = 272
     Top = 0
-    Width = 192
+    Width = 202
     Height = 81
     Color = clMoneyGreen
     ParentBackground = False
@@ -76,25 +77,25 @@ object Form2: TForm2
     object BtnScanForward: TButton
       Left = 8
       Top = 43
-      Width = 83
+      Width = 89
       Height = 25
       Caption = 'Scan Forward'
       TabOrder = 0
       OnClick = BtnScanForwardClick
     end
     object BtnScanBackward: TButton
-      Left = 97
+      Left = 103
       Top = 43
-      Width = 80
+      Width = 88
       Height = 25
-      Caption = 'Scan Back'
+      Caption = 'Scan Backward'
       TabOrder = 1
       OnClick = BtnScanBackwardClick
     end
     object RadioControls: TRadioGroup
       Left = 10
       Top = 4
-      Width = 159
+      Width = 175
       Height = 37
       Caption = 'Controls'
       Columns = 2
@@ -115,17 +116,21 @@ object Form2: TForm2
     Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 2
+    DesignSize = (
+      613
+      81)
     object BtnMoveBy: TButton
-      Left = 16
+      Left = 376
       Top = 43
       Width = 81
       Height = 25
+      Anchors = [akTop, akRight]
       Caption = 'Move By'
       TabOrder = 0
       OnClick = BtnMoveByClick
     end
     object BtnSearch: TButton
-      Left = 144
+      Left = 16
       Top = 43
       Width = 121
       Height = 25
@@ -134,55 +139,63 @@ object Form2: TForm2
       OnClick = BtnSearchClick
     end
     object BtnGetBookmark: TButton
-      Left = 320
+      Left = 472
       Top = 12
       Width = 129
       Height = 25
+      Anchors = [akTop, akRight]
       Caption = 'Get Bookmark'
       TabOrder = 2
       OnClick = BtnGetBookmarkClick
     end
-    object Button4: TButton
-      Left = 320
+    object BtnGotoBookmark: TButton
+      Left = 472
       Top = 43
       Width = 129
       Height = 25
-      Caption = 'Button4'
+      Anchors = [akTop, akRight]
+      Caption = 'Go to Bookmark'
+      Enabled = False
       TabOrder = 3
-    end
-    object Button5: TButton
-      Left = 463
-      Top = 12
-      Width = 121
-      Height = 25
-      Caption = 'Button5'
-      TabOrder = 4
-    end
-    object Button6: TButton
-      Left = 463
-      Top = 43
-      Width = 121
-      Height = 25
-      Caption = 'Button6'
-      TabOrder = 5
+      OnClick = BtnGotoBookmarkClick
     end
     object SpnMoveRecord: TSpinEdit
-      Left = 16
+      Left = 377
       Top = 13
       Width = 81
       Height = 24
+      Anchors = [akTop, akRight]
       MaxValue = 50
       MinValue = -50
-      TabOrder = 6
+      TabOrder = 4
       Value = 0
     end
     object EdtSearch: TEdit
-      Left = 144
+      Left = 16
       Top = 14
       Width = 121
       Height = 23
-      TabOrder = 7
+      TabOrder = 5
       TextHint = 'Record No'
+    end
+    object BtnEditMode: TButton
+      Left = 160
+      Top = 12
+      Width = 129
+      Height = 25
+      Caption = 'Edit Mode'
+      Enabled = False
+      TabOrder = 6
+      OnClick = BtnEditModeClick
+    end
+    object BtnPostMode: TButton
+      Left = 160
+      Top = 43
+      Width = 129
+      Height = 25
+      Caption = 'Post Mode'
+      Enabled = False
+      TabOrder = 7
     end
   end
   object DBNavigator1: TDBNavigator
@@ -191,12 +204,12 @@ object Form2: TForm2
     Top = 87
     Width = 1090
     Height = 25
-    DataSource = DataSource1
+    Anchors = [akLeft, akTop, akRight]
     TabOrder = 3
   end
   object DBGrid1: TDBGrid
     AlignWithMargins = True
-    Left = -1
+    Left = 8
     Top = 118
     Width = 1094
     Height = 435
@@ -208,6 +221,7 @@ object Form2: TForm2
     TitleFont.Height = -12
     TitleFont.Name = 'Segoe UI'
     TitleFont.Style = []
+    OnCellClick = DBGrid1CellClick
   end
   object StatusBar1: TStatusBar
     AlignWithMargins = True
@@ -229,7 +243,6 @@ object Form2: TForm2
       item
         Width = 250
       end>
-    ExplicitLeft = 8
   end
   object FDQuery1: TFDQuery
     AfterOpen = FDQuery1AfterOpen
@@ -237,15 +250,15 @@ object Form2: TForm2
     Connection = SharedDataModule.FDConnection1
     SQL.Strings = (
       'SELECT * FROM Customer')
-    Left = 328
-    Top = 312
+    Left = 192
+    Top = 296
   end
   object DataSource1: TDataSource
     DataSet = FDQuery1
     OnStateChange = DataSource1StateChange
     OnDataChange = DataSource1DataChange
-    Left = 336
-    Top = 224
+    Left = 192
+    Top = 208
   end
   object FDGUIxWaitCursor1: TFDGUIxWaitCursor
     Provider = 'Forms'
@@ -258,8 +271,8 @@ object Form2: TForm2
       't Files (*.xml,*.cds)|*.xml;*.cds|All Files (*.*)|*.*'
     InitialDir = 'c:\program files\common files\borland shared\data'
     Title = 'select Client Dataset to Navigate'
-    Left = 552
-    Top = 336
+    Left = 536
+    Top = 320
   end
   object MainMenu1: TMainMenu
     Left = 40

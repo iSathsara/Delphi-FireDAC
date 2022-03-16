@@ -26,9 +26,7 @@ type
     BtnMoveBy: TButton;
     BtnSearch: TButton;
     BtnGetBookmark: TButton;
-    Button4: TButton;
-    Button5: TButton;
-    Button6: TButton;
+    BtnGotoBookmark: TButton;
     DBNavigator1: TDBNavigator;
     DBGrid1: TDBGrid;
     FDQuery1: TFDQuery;
@@ -45,6 +43,8 @@ type
     RadioControls: TRadioGroup;
     SpnMoveRecord: TSpinEdit;
     EdtSearch: TEdit;
+    BtnEditMode: TButton;
+    BtnPostMode: TButton;
     procedure FDQuery1AfterOpen(DataSet: TDataSet);
     procedure DataSource1StateChange(Sender: TObject);
     procedure CloseClick(Sender: TObject);
@@ -62,6 +62,9 @@ type
     procedure BtnMoveByClick(Sender: TObject);
     procedure BtnGetBookmarkClick(Sender: TObject);
     procedure BtnSearchClick(Sender: TObject);
+    procedure BtnGotoBookmarkClick(Sender: TObject);
+    procedure BtnEditModeClick(Sender: TObject);
+    procedure DBGrid1CellClick(Column: TColumn);
   private
     { Private declarations }
     fBookmark : TBookmark;
@@ -94,6 +97,14 @@ end;
 procedure TForm2.FormCreate(Sender: TObject);
 begin
   FDQuery1.Active := True;
+end;
+
+procedure TForm2.DBGrid1CellClick(Column: TColumn);
+begin
+  BtnEditMode.Enabled := True;
+
+  // this will activate the db navigator
+  DBNavigator1.DataSource := DataSource1;
 end;
 {______________________________________________________________________________}
 {______________________________________________________________________________}
@@ -228,6 +239,14 @@ procedure TForm2.BtnGetBookmarkClick(Sender: TObject);
 begin
   fBookmark := FDQuery1.GetBookmark;
   BtnGetBookmark.Enabled := True;
+  BtnGotoBookmark.Enabled := True;
+end;
+
+procedure TForm2.BtnGotoBookmarkClick(Sender: TObject);
+begin
+  Start;
+  FDQuery1.GotoBookmark(fBookmark);
+  Complete;
 end;
 
 // Search
@@ -239,6 +258,7 @@ begin
   if EdtSearch.Text <> EmptyStr then begin
 
     RecNo := StrToInt(EdtSearch.Text);
+
 
     while (not FDQuery1.Eof) and (not FDQuery1.Locate('CUST_NO', RecNo, [])) do begin
 
@@ -256,5 +276,18 @@ begin
 
   Complete;
 end;
+
+// Edit Mode
+procedure TForm2.BtnEditModeClick(Sender: TObject);
+begin
+  Start;
+  FDQuery1.Edit;
+  Complete;
+  BtnPostMode.Enabled := True;
+  BtnEditMode.Enabled := False;
+end;
+
+// Post Mode
+
 
 end.
